@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.yangweiye.miaosha.mapper.MiaoshaGoodsMapper">
+    <resultMap id="BaseResultMap" type="com.yangweiye.miaosha.pojo.MiaoshaGoods">
+        <id column="id" jdbcType="BIGINT" property="id"/>
+        <result column="goods_id" jdbcType="BIGINT" property="goodsId"/>
+        <result column="miaosha_price" jdbcType="INTEGER" property="miaoshaPrice"/>
+        <result column="miaosha_stcok" jdbcType="INTEGER" property="miaoshaStcok"/>
+        <result column="start_time" jdbcType="TIMESTAMP" property="startTime"/>
+        <result column="end_time" jdbcType="TIMESTAMP" property="endTime"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id
+        , goods_id, miaosha_price, miaosha_stcok, start_time, end_time
+    </sql>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from ms_miaosha_goods
+        where id = #{id,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+        delete
+        from ms_miaosha_goods
+        where id = #{id,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.yangweiye.miaosha.pojo.MiaoshaGoods" useGeneratedKeys="true" keyProperty="id"
+            keyColumn="id">
+        insert into ms_miaosha_goods (id, goods_id, miaosha_price,
+                                      miaosha_stcok, start_time, end_time)
+        values (#{id,jdbcType=BIGINT}, #{goodsId,jdbcType=BIGINT}, #{miaoshaPrice,jdbcType=INTEGER},
+                #{miaoshaStcok,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="com.yangweiye.miaosha.pojo.MiaoshaGoods" useGeneratedKeys="true" keyProperty="id"
+            keyColumn="id">
+        insert into ms_miaosha_goods
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="goodsId != null">
+                goods_id,
+            </if>
+            <if test="miaoshaPrice != null">
+                miaosha_price,
+            </if>
+            <if test="miaoshaStcok != null">
+                miaosha_stcok,
+            </if>
+            <if test="startTime != null">
+                start_time,
+            </if>
+            <if test="endTime != null">
+                end_time,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=BIGINT},
+            </if>
+            <if test="goodsId != null">
+                #{goodsId,jdbcType=BIGINT},
+            </if>
+            <if test="miaoshaPrice != null">
+                #{miaoshaPrice,jdbcType=INTEGER},
+            </if>
+            <if test="miaoshaStcok != null">
+                #{miaoshaStcok,jdbcType=INTEGER},
+            </if>
+            <if test="startTime != null">
+                #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                #{endTime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.yangweiye.miaosha.pojo.MiaoshaGoods">
+        update ms_miaosha_goods
+        <set>
+            <if test="goodsId != null">
+                goods_id = #{goodsId,jdbcType=BIGINT},
+            </if>
+            <if test="miaoshaPrice != null">
+                miaosha_price = #{miaoshaPrice,jdbcType=INTEGER},
+            </if>
+            <if test="miaoshaStcok != null">
+                miaosha_stcok = #{miaoshaStcok,jdbcType=INTEGER},
+            </if>
+            <if test="startTime != null">
+                start_time = #{startTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="endTime != null">
+                end_time = #{endTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.yangweiye.miaosha.pojo.MiaoshaGoods">
+        update ms_miaosha_goods
+        set goods_id      = #{goodsId,jdbcType=BIGINT},
+            miaosha_price = #{miaoshaPrice,jdbcType=INTEGER},
+            miaosha_stcok = #{miaoshaStcok,jdbcType=INTEGER},
+            start_time    = #{startTime,jdbcType=TIMESTAMP},
+            end_time      = #{endTime,jdbcType=TIMESTAMP}
+        where id = #{id,jdbcType=BIGINT}
+    </update>
+</mapper>
