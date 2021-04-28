@@ -1,10 +1,10 @@
 server:
-  port: 80
+  port: 8081
 
 spring:
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/miaosha
-    username: root
+    url: jdbc:mysql://152.136.145.182:3306/miaosha
+    username: yangweiye_admin
     password: 1998yang
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -17,9 +17,10 @@ spring:
     #      max-open-prepared-statements: 20
 
   redis:
-    host: 127.0.0.1
+    host: yangweiye.cn
     port: 6379
-    timeout: 10000
+    password: 1998yang
+    timeout: 2000
 
     jedis:
       pool:
@@ -27,13 +28,3 @@ spring:
         min-idle: 1
         max-active: 5
         max-wait: 2000
-
-rocketmq:
-  name-server: 127.0.0.1:9876
-  #  consumer:
-  #    topic: orders_topic
-  #    group: orders_consumer_group
-  producer:
-    #    customized-trace-topic: order_topic
-    group: order_producer_group
-    send-message-timeout: 100000
